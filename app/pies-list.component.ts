@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Task } from './task.model';
 
 @Component({
   selector: 'pies',
@@ -13,5 +14,5 @@ import { Component } from '@angular/core';
 
 export class PiesListComponent {
   favoritePies: string[] = ["Apple", "Banana Cream", "Blackberry"];
-  
+
 }
