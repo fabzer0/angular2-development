@@ -1,4 +1,4 @@
-////////////////////// DEPENDENCIES AND VARIABLES //////////////////////
+////////////////// DEPENDENCIES AND VARIABLES ///////////////
 var gulp = require('gulp');
 
 // used for concatenating/minifying bower files and other js/css
@@ -74,7 +74,7 @@ gulp.task('bower', ['jsBower', 'cssBower']);
 ////////////////////// SASS //////////////////////
 
 gulp.task('sassBuild', function() {
-  return gulp.src(['resources/styles/*'])
+  return gulp.src(['resources/styles/*.css'])
     .pipe(sourcemaps.init())
     .pipe(sass())
     .pipe(sourcemaps.write())
