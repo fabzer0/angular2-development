@@ -5,11 +5,21 @@ import { Component } from '@angular/core';
   template: `
   <div class="container">
     <h1>My First Angular 2 App</h1>
-    <h3 (click)="showDetails(currentTask)" *ngFor="let currentTask of tasks">{{ currentTask.description }}</h3>
-    <div>
+    <div *ngFor="let currentTask of tasks">
+      <h3>{{ currentTask.description }}</h3>
+      <button (click)="showDetails(currentTask)">Edit</button>
+    </div>
+    <div *ngIf="selectedTask">
       <h1>Edit Task</h1>
-      <p>Description: {{ selectedTask.description }}</p>
-      <p>Task ID: {{ selectedTask.id }}</p>
+      <div>
+        <label>Enter Task Description:</label>
+        <input [(ngModel)]="selectedTask.description">
+      </div>
+      <div>
+        <label>Enter Task ID:</label>
+        <input [(ngModel)]="selectedTask.id">
+        <button (click)="finishedEditing()">Done</button>
+      </div>
     </div>
   </div>
   `
@@ -22,9 +32,12 @@ export class AppComponent {
     new Task("Rewatch all the Lord of the Rings movies.", 2),
     new Task("Do the laundry.", 3)
   ];
-  selectedTask: Task = this.tasks[0];
+  selectedTask: Task = null;
   showDetails(clickedTask: Task) {
     this.selectedTask = clickedTask;
+  }
+  finishedEditing() {
+    this.selectedTask = null;
   }
 }
 
