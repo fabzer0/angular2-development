@@ -5,46 +5,30 @@ import { Component } from '@angular/core';
   template: `
   <div class="container">
     <h1>My First Angular 2 App</h1>
-    <h3>One of my favorite bands is: {{ favoriteBand }}</h3>
-    <p>If I had to choose a favorite painter it would be: {{ favoritePainter }}</p>
-    <p>The number of slices of pie I would like is: {{ slicesOfPie }}</p>
-    <h3>One of my favorite albums is: </h3>
-    <p>{{ favoriteAlbum.title }}</p>
-    <p>By {{ favoriteAlbum.artist }}</p>
-    <p>Released in {{ favoriteAlbum.released }}</p>
-    <h3>Here are my favorite pies!</h3>
-    <div class="pie" *ngFor="let currentPie of favoritePies">
-      <p>{{ currentPie }}</p>
-    </div>
-    <h3>Here are my favorite Albums!</h3>
-    <div class="album" *ngFor="let album of albums">
-      <p>{{album.title}}</p>
-      <p>By {{album.artist}}</p>
-      <p>Released in {{album.released}}</p>
+    <h3 (click)="doStuff(currentTask)" *ngFor="let currentTask of tasks">{{ currentTask.description }}</h3>
 
-    </div>
   </div>
   `
 })
 
 export class AppComponent {
-  favoriteBand: string = 'Ani DiFranco';
-  favoritePainter: string = 'Van Gogh';
-  slicesOfPie: number = 3;
-  favoriteAlbum: Album = new Album("Disintegration", "The Cure", 1989);
-  favoritePies: string[] = ["Apple", "Banana Cream", "Blackberry"];
-  albums: Album[] = [
-    new Album("Pulse", "Pink Floyd", 1995),
-    new Album("Funhouse", "The Stooges", 1970),
-    new Album("Twilight of The Thunder God", "Amon Amarth", 2008),
-    new Album("Dilate", "Ani DiFranco", 1996),
-    new Album("Chopin - Complete Nocturnes", "Brigittr Engerer", 2015),
-    new Album("Axis Bold As Love", "The Jimi Hendrix Experience", 1967)
-
+  public tasks: Task[] = [
+    new Task("Create To-Do List app.", 0),
+    new Task("Learn Kung Fu.", 1),
+    new Task("Rewatch all the Lord of the Rings movies.", 2),
+    new Task("Do the laundry.", 3)
   ];
+  doStuff(clickedTask: Task) {
+    if(clickedTask.done === true) {
+      alert("This task is done");
+    } else {
+      alert("This task is not completed yet. Get to work!");
+    }
+  }
 }
 
-export class Album {
-  constructor (public title: string, public artist: string, public released: number) {}
+export class Task {
+  public done: boolean = false;
+  constructor(public description: string, public id: number) {}
 
 }
