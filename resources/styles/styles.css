@@ -17,3 +17,8 @@ h1 {
   width: 25%;
   background-color: lightblue;
 }
+
+.filter {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
